@@ -1,0 +1,91 @@
+﻿Week01 2016-03-28
+- Start
+- Port cell
+- Port grid
+- Port binaryTree
+- Display map text and image
+- Some Unitests for cell  (NUnit)
+
+Week02 2016-04-04
+- Setup progress list
+- Reset project
+- Sidewinder
+- Test Opencoverage
+- Start solving in ruby
+
+Week03 2016-04-11
+- Finish solving rub
+- Longest Path
+- Colorize distance
+- Solving
+
+Week04 2016-04-18
+- WinForms app
+- WF select builder
+- WF select and display solution
+- AldousBorder
+
+week05 2016-04-25
+- Wilson
+- different colouring
+- hunt and kill
+
+week06 2016-05-02
+- use Any
+- Enter gridsize
+- Recursive Backtracker
+- Multiple runs gather values per type
+- Grid from text
+- AlbousBorderWilson
+
+week07 2016-05-09
+- Masked Grid
+- Display
+
+week08 2016-05-16
+- Polar Grid
+- Display
+- Add polar and masked grid to application
+- Hex grid
+
+week09 2016-05-23
+- Full Polar
+- Add hex to winform
+- display hex grid
+- triangle grid
+- display triangle grid
+- Xamarin app (text based)
+
+week10 2016-05-30
+- true hexgrid
+- true triangle
+- upsilon grid
+- different display classes + factory
+- Xamarin display image
+
+week11 2016-06-06
+- Move size calculation to display
+- display all options
+- xamarin display all
+
+week12 2016-06-13
+- weave grid
+- Start show grid building
+
+week13 2016-06-20
+- Show grid building
+
+
+Todo
+- More Cell tests
+- Grid Tests
+- Coverage for .net
+- WPF form
+- Performance measurement
+- add sample function to list
+- spherical polar with wide cell in center and smaller outside
+
+
+
+
+
