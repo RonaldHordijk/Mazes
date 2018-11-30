@@ -11,9 +11,9 @@
 
       while (current != null)
       {
-        var unvisitedNeighbors = current.UnusedNeighbors;
+        var unvisitedNeighbors = current.GetUnusedNeighbors();
 
-        if (!unvisitedNeighbors.IsEmpty())
+        if (!unvisitedNeighbors.IsEmpty)
         {
           Cell neighbour = unvisitedNeighbors.Sample();
           current.Link(neighbour);
@@ -28,9 +28,9 @@
             if (cell == null)
               continue;
 
-            var visitedNeighbors = cell.UsedNeighbors;
+            var visitedNeighbors = cell.GetUsedNeighbors();
 
-            if (cell.Links.IsEmpty() && !visitedNeighbors.IsEmpty())
+            if (cell.Links.IsEmpty&& !visitedNeighbors.IsEmpty)
             {
               current = cell;
               Cell neighbour = visitedNeighbors.Sample();
@@ -52,8 +52,8 @@
 
     private Cell LinkToNeighbor(Cell current)
     {
-      var unvisitedNeighbors = current.UnusedNeighbors;
-      if (unvisitedNeighbors.IsEmpty())
+      var unvisitedNeighbors = current.GetUnusedNeighbors();
+      if (unvisitedNeighbors.IsEmpty)
         return null;
 
       Cell neighbour = unvisitedNeighbors.Sample();
@@ -89,9 +89,9 @@
         if (cell == null)
           continue;
 
-        var visitedNeighbors = cell.UsedNeighbors;
+        var visitedNeighbors = cell.GetUsedNeighbors();
 
-        if (cell.Links.IsEmpty() && !visitedNeighbors.IsEmpty())
+        if (cell.Links.IsEmpty&& !visitedNeighbors.IsEmpty)
         {
           stepInfo.CurrentCell = cell;
           Cell neighbour = visitedNeighbors.Sample();

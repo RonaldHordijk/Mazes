@@ -57,7 +57,7 @@
       var neighbor = neighbors.Sample();
       newCell = false;
 
-      if (neighbor.Links.IsEmpty())
+      if (neighbor.Links.IsEmpty)
       {
         cell.Link(neighbor);
         newCell = true;

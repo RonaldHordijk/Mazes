@@ -5,12 +5,12 @@
 
   public class Distances
   {
-    private Cell root;
-    private Dictionary<Cell, int> cells = new Dictionary<Cell, int>();
+    private readonly Cell _root;
+    private readonly Dictionary<Cell, int> _cells = new Dictionary<Cell, int>();
 
     public Distances(Cell cell)
     {
-      this.root = cell;
+      _root = cell;
     }
 
     public static Distances Build(Cell start)
@@ -78,9 +78,9 @@
 
     public KeyValuePair<Cell, int> MaxDistance()
     {
-      KeyValuePair<Cell, int> max = this.cells.First();
+      KeyValuePair<Cell, int> max = _cells.First();
 
-      foreach (KeyValuePair<Cell, int> item in this.cells)
+      foreach (KeyValuePair<Cell, int> item in _cells)
       {
         if (item.Value > max.Value)
           max = item;
@@ -89,41 +89,30 @@
       return max;
     }
 
-    public bool KnowsCell(Cell cell)
-    {
-      return this.cells.Keys.Contains(cell);
-    }
+    public bool KnowsCell(Cell cell) => _cells.Keys.Contains(cell);
 
     public int GetDistance(Cell cell)
     {
-      int cellValue = 0;
-      this.cells.TryGetValue(cell, out cellValue);
+      _cells.TryGetValue(cell, value: out int cellValue);
 
       return cellValue;
     }
 
-    public int Count()
-    {
-      return this.cells.Count();
-    }
+    public int Count => _cells.Count;
 
-    private void Clear()
-    {
-      this.cells.Clear();
-    }
+    private void Clear() => _cells.Clear();
 
-    private void Add(Cell cell, int distance)
-    {
-      this.cells.Add(cell, distance);
-    }
+    private void Add(Cell cell, int distance) => _cells.Add(cell, distance);
 
     private void BuildDistances()
     {
-      this.Clear();
-      this.cells.Add(this.root, 0);
+      Clear();
+      _cells.Add(_root, 0);
 
-      List<Cell> frontier = new List<Cell>();
-      frontier.Add(this.root);
+      List<Cell> frontier = new List<Cell>
+      {
+        _root
+      };
 
       while (frontier.Count != 0)
       {
@@ -131,14 +120,14 @@
 
         foreach (Cell cell in frontier)
         {
-          int nextDistance = this.GetDistance(cell) + 1;
+          int nextDistance = GetDistance(cell) + 1;
 
           foreach (Cell linked in cell.Links)
           {
-            if (this.cells.ContainsKey(linked))
+            if (_cells.ContainsKey(linked))
               continue;
 
-            this.Add(linked, nextDistance);
+            Add(linked, nextDistance);
 
             newFrontier.Add(linked);
           }

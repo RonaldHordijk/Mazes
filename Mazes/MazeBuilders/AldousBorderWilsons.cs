@@ -19,7 +19,7 @@
         var neighbors = current.Neighbors;
         Cell neighbour = neighbors.Sample();
 
-        if (neighbour.Links.IsEmpty())
+        if (neighbour.Links.IsEmpty)
         {
           current.Link(neighbour);
           unvisitedCount--;
@@ -33,11 +33,11 @@
       foreach (Cell cell in grid.GetCells())
       {
         if ((cell != null) &&
-            cell.Links.IsEmpty())
+            cell.Links.IsEmpty)
           unvisited.Add(cell);
       }
 
-      while (!unvisited.IsEmpty())
+      while (!unvisited.IsEmpty)
       {
         Cell cell = unvisited.Sample();
         List<Cell> path = new List<Cell>();

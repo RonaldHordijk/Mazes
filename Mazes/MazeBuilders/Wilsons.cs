@@ -16,7 +16,7 @@
 
       unvisited.Remove(unvisited.Sample());
 
-      while (!unvisited.IsEmpty())
+      while (!unvisited.IsEmpty)
       {
         Cell cell = unvisited.Sample();
         var path = new CellCollection();
@@ -57,7 +57,7 @@
       if (stepInfo == null)
         return false;
 
-      if ((stepInfo as WilsonGridStepInfo).Unvisited.IsEmpty())
+      if ((stepInfo as WilsonGridStepInfo).Unvisited.IsEmpty)
       {
         stepInfo.CurrentCell = null;
         return false;
