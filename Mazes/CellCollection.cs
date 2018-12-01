@@ -5,24 +5,33 @@
 
   public interface IReadOnlyCellCollection : IReadOnlyCollection<Cell>
   {
-    bool IsEmpty { get; }
+    bool IsEmpty();
 
     Cell Sample();
   }
 
   public interface ICellCollection : ICollection<Cell>
   {
-    bool IsEmpty { get; }
+    bool IsEmpty();
 
     Cell Sample();
   }
 
   public class CellCollection : List<Cell>, ICellCollection, IReadOnlyCellCollection
   {
-    private static readonly Random random = new Random();
+    private static Random random = new Random();
 
-    public bool IsEmpty => Count == 0;
+    public bool IsEmpty()
+    {
+      return this.Count == 0;
+    }
 
-    public Cell Sample() => IsEmpty ? null : this[random.Next(Count)];
+    public Cell Sample()
+    {
+      if (this.IsEmpty())
+        return null;
+
+      return this[random.Next(this.Count)];
+    }
   }
 }

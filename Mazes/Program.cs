@@ -127,7 +127,7 @@ namespace Mazes
         sumPathLength += longestPath.MaxDistance().Value;
 
         Distances deadEnds = Distances.DeadEnds(grid);
-        sumDeadEnds += deadEnds.Count;
+        sumDeadEnds += deadEnds.Count();
       }
 
       Console.WriteLine("Longest Path: {0}", (double)sumPathLength / samples);

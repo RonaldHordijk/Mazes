@@ -16,8 +16,8 @@
       {
         Cell current = stack.Peek();
 
-        var unusedNeighbors = current.GetUnusedNeighbors();
-        if (unusedNeighbors.IsEmpty)
+        var unusedNeighbors = current.UnusedNeighbors;
+        if (unusedNeighbors.IsEmpty())
         {
           stack.Pop();
         }
@@ -45,8 +45,8 @@
 
       Cell current = stepInfo.CurrentCell;
 
-      var unusedNeighbors = current.GetUnusedNeighbors();
-      if (unusedNeighbors.IsEmpty)
+      var unusedNeighbors = current.UnusedNeighbors;
+      if (unusedNeighbors.IsEmpty())
       {
         (stepInfo as RecursiveBacktrackerGridStepInfo).Pop();
       }
@@ -75,7 +75,7 @@
 
       public Cell Pop()
       {
-        if (Path.IsEmpty)
+        if (Path.IsEmpty())
           return null;
 
         var result = Path[Path.Count - 1];
@@ -85,7 +85,7 @@
 
       public Cell Peek()
       {
-        if (Path.IsEmpty)
+        if (Path.IsEmpty())
           return null;
 
         return Path[Path.Count - 1];

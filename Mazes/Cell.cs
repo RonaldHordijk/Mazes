@@ -2,29 +2,59 @@
 {
   public class Cell
   {
-    private readonly CellCollection _links;
+    private CellCollection links;
 
     public Cell(int row, int column)
     {
-      Row = row;
-      Column = column;
+      this.Row = row;
+      this.Column = column;
 
-      _links = new CellCollection();
+      this.links = new CellCollection();
     }
 
-    public IReadOnlyCellCollection Links => _links as IReadOnlyCellCollection;
+    public IReadOnlyCellCollection Links
+    {
+      get
+      {
+        return this.links as IReadOnlyCellCollection;
+      }
+    }
 
-    public int Row { get; }
+    public int Row
+    {
+      get;
+      private set;
+    }
 
-    public int Column { get; }
+    public int Column
+    {
+      get;
+      private set;
+    }
 
-    public Cell North { get; set; }
+    public Cell North
+    {
+      get;
+      set;
+    }
 
-    public Cell East { get; set; }
+    public Cell East
+    {
+      get;
+      set;
+    }
 
-    public Cell West { get; set; }
+    public Cell West
+    {
+      get;
+      set;
+    }
 
-    public Cell South { get; set; }
+    public Cell South
+    {
+      get;
+      set;
+    }
 
     public virtual IReadOnlyCellCollection Neighbors
     {
@@ -47,30 +77,36 @@
       }
     }
 
-    public IReadOnlyCellCollection GetUnusedNeighbors()
+    public IReadOnlyCellCollection UnusedNeighbors
     {
-      CellCollection unusedNeighbors = new CellCollection();
-
-      foreach (Cell cell in this.Neighbors)
+      get
       {
-        if (!cell.IsUsed)
-          unusedNeighbors.Add(cell);
-      }
+        CellCollection unusedNeighbors = new CellCollection();
 
-      return unusedNeighbors as IReadOnlyCellCollection;
+        foreach (Cell cell in this.Neighbors)
+        {
+          if (!cell.IsUsed())
+            unusedNeighbors.Add(cell);
+        }
+
+        return unusedNeighbors as IReadOnlyCellCollection;
+      }
     }
 
-    public IReadOnlyCellCollection GetUsedNeighbors()
+    public IReadOnlyCellCollection UsedNeighbors
     {
-      CellCollection usedNeighbors = new CellCollection();
-
-      foreach (Cell cell in Neighbors)
+      get
       {
-        if (cell.IsUsed)
-          usedNeighbors.Add(cell);
-      }
+        CellCollection usedNeighbors = new CellCollection();
 
-      return usedNeighbors as IReadOnlyCellCollection;
+        foreach (Cell cell in this.Neighbors)
+        {
+          if (cell.IsUsed())
+            usedNeighbors.Add(cell);
+        }
+
+        return usedNeighbors as IReadOnlyCellCollection;
+      }
     }
 
     public virtual void Link(Cell cell, bool bidi = true)
@@ -78,7 +114,7 @@
       if (cell == null)
         return;
 
-      _links.Add(cell);
+      this.links.Add(cell);
       if (bidi)
         cell.Link(this, false);
     }
@@ -88,15 +124,24 @@
       if (cell == null)
         return;
 
-      _links.Remove(cell);
+      this.links.Remove(cell);
       if (bidi)
         cell.Unlink(this, false);
     }
 
-    public bool IsLinked(Cell cell) => _links.Contains(cell);
+    public bool IsLinked(Cell cell)
+    {
+      return this.links.Contains(cell);
+    }
 
-    public override string ToString() => Row.ToString() + " " + Column.ToString();
+    public override string ToString()
+    {
+      return this.Row.ToString() + " " + this.Column.ToString();
+    }
 
-    private bool IsUsed => _links.Count != 0;
+    private bool IsUsed()
+    {
+      return this.links.Count != 0;
+    }
   }
 }

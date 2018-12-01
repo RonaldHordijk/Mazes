@@ -77,7 +77,7 @@
       if (cell.East != null)
         neighbors.Add(cell.East);
 
-      if (neighbors.IsEmpty)
+      if (neighbors.IsEmpty())
         return;
 
       cell.Link(neighbors.Sample());
